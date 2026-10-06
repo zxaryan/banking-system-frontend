@@ -1,0 +1,221 @@
+<div class="min-h-screen bg-slate-950">
+
+  <div class="grid min-h-screen lg:grid-cols-2">
+
+    <!-- Left -->
+    <div class="hidden lg:flex flex-col justify-between bg-slate-950 p-12 text-white">
+
+      <div>
+        <div class="flex items-center gap-3">
+
+          <div
+            class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold"
+          >
+            B
+          </div>
+
+          <div>
+            <h1 class="text-lg font-bold">
+              BankSystem
+            </h1>
+
+            <p class="text-xs text-slate-400">
+              Online Banking
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="max-w-lg">
+
+        <p class="mb-4 text-sm font-semibold uppercase tracking-wider text-blue-400">
+          Secure Banking
+        </p>
+
+        <h2 class="text-5xl font-bold leading-tight">
+          Your money.
+          <br>
+          Your control.
+        </h2>
+
+        <p class="mt-6 text-lg leading-8 text-slate-400">
+          Manage your accounts, transfer money and track
+          your transactions from one secure banking platform.
+        </p>
+
+      </div>
+
+      <p class="text-sm text-slate-500">
+        © 2026 BankSystem. All rights reserved.
+      </p>
+
+    </div>
+
+
+    <!-- Right -->
+    <div class="flex items-center justify-center bg-slate-100 px-6 py-12">
+
+      <div class="w-full max-w-md">
+
+        <!-- Mobile Logo -->
+        <div class="mb-8 flex items-center gap-3 lg:hidden">
+
+          <div
+            class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold text-white"
+          >
+            B
+          </div>
+
+          <div>
+            <h1 class="font-bold text-slate-900">
+              BankSystem
+            </h1>
+
+            <p class="text-xs text-slate-500">
+              Online Banking
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- Card -->
+        <div class="rounded-2xl bg-white p-8 shadow-xl shadow-slate-200/60">
+
+          <div class="mb-8">
+
+            <h2 class="text-2xl font-bold text-slate-900">
+              Welcome back
+            </h2>
+
+            <p class="mt-2 text-sm text-slate-500">
+              Sign in to access your banking account.
+            </p>
+
+          </div>
+
+
+          <!-- Error -->
+          @if (errorMessage) {
+
+            <div
+              class="mb-5 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600"
+            >
+              {{ errorMessage }}
+            </div>
+
+          }
+
+
+          <form
+            (ngSubmit)="login()"
+            class="space-y-5"
+          >
+
+            <!-- Email -->
+            <div>
+
+              <label
+                for="email"
+                class="mb-2 block text-sm font-medium text-slate-700"
+              >
+                Email address
+              </label>
+
+              <input
+                id="email"
+                name="email"
+                type="email"
+                [(ngModel)]="loginData.email"
+                placeholder="you@example.com"
+                autocomplete="email"
+                class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+              >
+
+            </div>
+
+
+            <!-- Password -->
+            <div>
+
+              <div class="mb-2 flex items-center justify-between">
+
+                <label
+                  for="password"
+                  class="block text-sm font-medium text-slate-700"
+                >
+                  Password
+                </label>
+
+                <button
+                  type="button"
+                  class="text-xs font-medium text-blue-600 hover:text-blue-700"
+                >
+                  Forgot password?
+                </button>
+
+              </div>
+
+              <input
+                id="password"
+                name="password"
+                type="password"
+                [(ngModel)]="loginData.password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                class="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10"
+              >
+
+            </div>
+
+
+            <!-- Login -->
+            <button
+              type="submit"
+              [disabled]="loading"
+              class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+
+              @if (loading) {
+                Signing in...
+              } @else {
+                Sign in
+              }
+
+            </button>
+
+          </form>
+
+
+          <!-- Register -->
+          <div class="mt-7 border-t border-slate-100 pt-6 text-center">
+
+            <p class="text-sm text-slate-500">
+
+              Don't have an account?
+
+              <a
+                routerLink="/register"
+                class="font-semibold text-blue-600 hover:text-blue-700"
+              >
+                Create account
+              </a>
+
+            </p>
+
+          </div>
+
+        </div>
+
+        <p class="mt-6 text-center text-xs text-slate-400">
+          Protected with secure authentication
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
