@@ -2,83 +2,109 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
- {
-  path: '',
-  canActivate: [authGuard],
-  loadComponent: () =>
-    import('./layout/main-layout/main-layout')
-      .then(m => m.MainLayout),
 
-  children: [
-    {
-      path: 'dashboard',
-      loadComponent: () =>
-        import('./features/dashboard/dashboard/dashboard')
-          .then(m => m.Dashboard)
-    },
+  // Public route
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
 
-    {
-      path: 'accounts',
-      loadComponent: () =>
-        import('./features/accounts/account-list/account-list')
-          .then(m => m.AccountList)
-    },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/login/login')
+        .then(m => m.Login)
+  },
 
-    {
-      path: 'accounts/:id',
-      loadComponent: () =>
-        import('./features/accounts/account-details/account-details')
-          .then(m => m.AccountDetails)
-    },
+  // Protected application routes
+  {
+    path: '',
+    canActivate: [authGuard],
 
-    {
-      path: 'accounts/create',
-      loadComponent: () =>
-        import('./features/accounts/create-account/create-account')
-          .then(m => m.CreateAccount)
-    },
+    loadComponent: () =>
+      import('./layout/main-layout/main-layout')
+        .then(m => m.MainLayout),
 
-    {
-      path: 'transactions',
-      loadComponent: () =>
-        import('./features/transactions/transaction-history/transaction-history')
-          .then(m => m.TransactionHistory)
-    },
+    children: [
 
-    {
-      path: 'deposit',
-      loadComponent: () =>
-        import('./features/transactions/deposit/deposit')
-          .then(m => m.Deposit)
-    },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./features/dashboard/dashboard/dashboard')
+            .then(m => m.Dashboard)
+      },
 
-    {
-      path: 'withdraw',
-      loadComponent: () =>
-        import('./features/transactions/withdraw/withdraw')
-          .then(m => m.Withdraw)
-    },
+      {
+        path: 'accounts',
+        loadComponent: () =>
+          import('./features/accounts/account-list/account-list')
+            .then(m => m.AccountList)
+      },
 
-    {
-      path: 'transfer',
-      loadComponent: () =>
-        import('./features/transactions/transfer/transfer')
-          .then(m => m.Transfer)
-    },
+      {
+        path: 'accounts/create',
+        loadComponent: () =>
+          import('./features/accounts/create-account/create-account')
+            .then(m => m.CreateAccount)
+      },
 
-    {
-      path: 'customers',
-      loadComponent: () =>
-        import('./features/customers/customer-list/customer-list')
-          .then(m => m.CustomerList)
-    },
+      {
+        path: 'accounts/:id',
+        loadComponent: () =>
+          import('./features/accounts/account-details/account-details')
+            .then(m => m.AccountDetails)
+      },
 
-    {
-      path: 'profile',
-      loadComponent: () =>
-        import('./features/users/user-profile/user-profile')
-          .then(m => m.UserProfile)
-    }
-  ]
-}
-]
+      {
+        path: 'transactions',
+        loadComponent: () =>
+          import('./features/transactions/transaction-history/transaction-history')
+            .then(m => m.TransactionHistory)
+      },
+
+      {
+        path: 'deposit',
+        loadComponent: () =>
+          import('./features/transactions/deposit/deposit')
+            .then(m => m.Deposit)
+      },
+
+      {
+        path: 'withdraw',
+        loadComponent: () =>
+          import('./features/transactions/withdraw/withdraw')
+            .then(m => m.Withdraw)
+      },
+
+      {
+        path: 'transfer',
+        loadComponent: () =>
+          import('./features/transactions/transfer/transfer')
+            .then(m => m.Transfer)
+      },
+
+      {
+        path: 'customers',
+        loadComponent: () =>
+          import('./features/customers/customer-list/customer-list')
+            .then(m => m.CustomerList)
+      },
+
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./features/users/user-profile/user-profile')
+            .then(m => m.UserProfile)
+      }
+
+    ]
+  },
+
+  // Unknown routes
+  {
+    path: '**',
+    redirectTo: 'login'
+  }
+
+];
